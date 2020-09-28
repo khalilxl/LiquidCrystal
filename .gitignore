@@ -1,6 +1,5 @@
 Gemfile.lock
 .bundle/*
-.vscode/*
 vendor/*
 *.cpp.bin*
 
