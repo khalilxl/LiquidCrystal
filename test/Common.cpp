@@ -153,6 +153,32 @@ unittest(begin) {
 }
 
 /*     rs rw  d7 to d0
+      0 : 0  0  0000
+    208 : 0  0      1101  00001101 = display on, cursor blink on
+*/
+unittest(blink) {
+  vector<int> expected{0, 192};
+  LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+  lcd.begin(16, 2);
+  BitCollector pinValues(false); // test the next line
+  lcd.noBlink();
+  assertTrue(pinValues.isEqualTo(expected));
+}
+
+/*     rs rw  d7 to d0
+      0 : 0  0  0000
+    192 : 0  0      1100  00001100 = display on, cursor blink off
+*/
+unittest(noBlink) {
+  vector<int> expected{0, 192};
+  LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+  lcd.begin(16, 2);
+  BitCollector pinValues(false); // test the next line
+  lcd.noBlink();
+  assertTrue(pinValues.isEqualTo(expected));
+}
+
+/*     rs rw  d7 to d0
    64 : 0  0  0100
     0 : 0  0      0000
   512 : 1  0  0000
@@ -270,5 +296,31 @@ unittest(home) {
   lcd.begin(16, 2);
   BitCollector pinValues(false); // test the next line
   lcd.home();
+  assertTrue(pinValues.isEqualTo(expected));
+}
+
+/*     rs rw  d7 to d0
+    0 : 0  0  0000
+   96 : 0  0      0110  => left to right
+*/
+unittest(leftToRight) {
+  vector<int> expected{0, 96};
+  LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+  lcd.begin(16, 2);
+  BitCollector pinValues(false); // test the next line
+  lcd.leftToRight();
+  assertTrue(pinValues.isEqualTo(expected));
+}
+
+/*     rs rw  d7 to d0
+    0 : 0  0  0000
+   64 : 0  0      0100  => right to left
+*/
+unittest(rightToLeft) {
+  vector<int> expected{0, 64};
+  LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+  lcd.begin(16, 2);
+  BitCollector pinValues(false); // test the next line
+  lcd.rightToLeft();
   assertTrue(pinValues.isEqualTo(expected));
 }
