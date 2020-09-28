@@ -5,4 +5,3 @@ vendor/*
 *.cpp.bin*
 update.sh
 push.sh
-
