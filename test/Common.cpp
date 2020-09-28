@@ -191,7 +191,7 @@ unittest(home)
    const int expectedSize = 2;
    int expected[expectedSize] = {0, 32};
    assertEqual(expectedSize , logIndex);
-   for (int i = 0; i < logIndex; ++i) {
+   for (int i = 0; i < expectedSize; ++i) {
     assertEqual(expected[i], pinLog[i]);
   }
 }
