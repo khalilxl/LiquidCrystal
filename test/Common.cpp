@@ -172,3 +172,26 @@ unittest(scrollDisplayRight) {
     assertEqual(expected[i], pinLog[i]);
   }
 }
+
+unittest(home)
+{
+    state->reset();
+    BitCollector enableBits;
+    LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+    logIndex = 0;
+    lcd.begin(16, 2);
+    state->digitalPin[enable].addObserver("lcd", &enableBits);
+    lcd.home();
+    state->digitalPin[enable].removeObserver("lcd");
+    /*     rs rw  d7 to d0
+        0 : 0  0  0000
+        32 : 0  0  0010
+    */
+
+   const int expectedSize = 2;
+   int expected[expectedSize] = {0, 32};
+   assertEqual(expectedSize , logIndex);
+   for (int i = 0; i < logIndex; ++i) {
+    assertEqual(expected[i], pinLog[i]);
+  }
+}
