@@ -14,4 +14,9 @@ unittest(getRows) {
   assertEqual(2, lcd.getRows());
 }
 
+unittest(home) {
+  LiquidCrystal_Test lcd(rs, enable, d4, d5, d6, d7);
+  lcd.begin(16, 2);
+}
+
 unittest_main()
